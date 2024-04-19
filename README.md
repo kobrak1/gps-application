@@ -26,6 +26,14 @@ Location Mapper is a web application developed using React and Leaflet to visual
    ```bash
    cd api; npm install
    ```
+
+## Usage
+
+1. Start the development server for both client and api:
+   ```bash
+   npm run dev
+   
+   
    
 
 
