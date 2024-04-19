@@ -7,9 +7,10 @@
     "start": "node index.js",
     "dev": "nodemon --inspect index.js",
     "build:ui": "rm -rf dist && cd ../client && npm run build && cp -r dist ../api",
-    "deploy:full": "npm run build:ui && git add . && git commit -m ui-build && git push"
+    "deploy:full": "npm run build:ui && git add . && git commit -m ui-build && git push",
+    "build": "npm i"
   },
-  "author": "",
+  "author": "ahmet burak karhan",
   "license": "MIT",
   "dependencies": {
     "cors": "^2.8.5",
