@@ -1,39 +1,105 @@
-import 'leaflet/dist/leaflet.css'
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { Button } from '@mui/material'
+import { message } from 'antd'
 import { MapContainer, Marker, TileLayer, useMapEvents } from 'react-leaflet'
+import markerService from './services/services'
+import MarkerList from './components/MarkerList';
+import 'leaflet/dist/leaflet.css'
+import { MainContext } from './context/MainProvider';
 
 const App = () => {
-  const [center, setCenter] = useState([41.015137, 28.979530]);
+  const [markers, setMarkers] = useState([])
+  const { center, setCenter, downloadJSON } = useContext(MainContext)
+
+  useEffect(() => {
+    markerService
+      .getAll()
+      .then(initialMarkers => {
+        setMarkers(initialMarkers)
+        console.log('markers are fetched from the db');
+      })
+  }, [])
 
   // Event handler for moving the map
   const SetViewOnMove = () => {
     const map = useMapEvents({
       move: () => {
-        setCenter(map.getCenter());
+        const newCenter = map.getCenter();
+        setCenter({ lat: newCenter.lat, lng: newCenter.lng });
       },
-    });
-    return null;
-  };
+    })
+    return null
+  }
 
-  // Event handler for clicking the save button
+  // event handler for clicking the save button
   const handleSave = () => {
-    const currentDate = new Date().toISOString();
+    const currentDate = new Date().toISOString()
     const data = {
-      lat: center[0],
-      lng: center[1],
-      date: currentDate,
-    };
-    console.log('Point saved:', data);
-  };
+      lat: center.lat,
+      lng: center.lng,
+      datetime: currentDate,
+    }
+    console.log('Marker data:', data)
+    markerService
+      .post(data)
+      .then(returnedMarker => {
+        setMarkers(markers.concat(returnedMarker))
+        message.success('Marker saved successfully')
+      })
+      .catch(error => {
+        console.error('Error:', error)
+        message.error(`${error.message}`)
+      })
+  }
+
+  // handle remove a marker from the markerlist
+  const removeMarker = async (id) => {
+    try {
+      // send delete request to the backend
+      await markerService.remove(id)
+      
+      // filter out the removed item from the current list of blogs
+      const updatedMarkers = markers.filter(item => item.id !== id)
+
+      // update the state wşth the new list of blogs
+      setMarkers(updatedMarkers)
+
+      message.success('Marker deleted successfully')
+    } catch(error) {
+      console.error('Failed to delete the marker:', error)
+      message.error('Failed to delete the marker!')
+    }
+  }
 
   return (
     <div>
-      <MapContainer center={center} zoom={13} style={{ height: '400px', width: '100%' }}>
-        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-        <SetViewOnMove />
-        <Marker position={center} />
-      </MapContainer>
-      <button onClick={handleSave}>Noktayı Kaydet</button>
+      <div className="marker">
+        <MapContainer center={center} zoom={13} style={{ height: '400px', width: '85%' }}>
+          <TileLayer url='https://tile.openstreetmap.org/{z}/{x}/{y}.png' />
+          <SetViewOnMove />
+          <Marker position={center} />
+        </MapContainer>
+        <MarkerList 
+          className='markers-main'
+          markers={markers}
+          removeMarker={removeMarker}
+          setCenter={setCenter}
+        />
+      </div>
+      <Button 
+        variant='contained'
+        onClick={handleSave}
+        style={{margin: '1rem 0'}}
+      >
+        Save Marker
+      </Button>
+      <Button
+        variant='outlined'
+        onClick={() => downloadJSON(markers)}
+        style={{margin: '1rem'}}
+      >
+        Donwload JSON
+      </Button>
     </div>
   );
 };
