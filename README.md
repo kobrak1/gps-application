@@ -13,6 +13,22 @@ Location Mapper is a web application developed using React and Leaflet to visual
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/location-mapper.git
+   git clone https://github.com/kobrak1/gps-application.git
+
+2. Navigate to the project directory:
+   ```bash
+   cd gps-application
+
+3. Split the terminal and install dependencies for both client and api:
+   ```bash
+   cd client; npm install
+   ```
+   ```bash
+   cd api; npm install
+   ```
+   
+
+
+
 
 
