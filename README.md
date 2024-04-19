@@ -38,7 +38,7 @@ You can access the deployed web application here: [https://location-mapper.onren
 
 ## Usage
 
-1. Start the development server for both client and api:
+1. Start the development server for both client and API. Run this command in each terminal seperately:
    ```bash
    npm run dev
    ```
