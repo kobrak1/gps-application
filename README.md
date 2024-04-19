@@ -26,17 +26,42 @@ Location Mapper is a web application developed using React and Leaflet to visual
    ```bash
    cd api; npm install
    ```
+4. Create a .env file in the server directory and add the following environment variables:
+
+    ```bash
+    PORT=5000
+    MONGO_URI=your_mongodb_uri
 
 ## Usage
 
 1. Start the development server for both client and api:
    ```bash
    npm run dev
-   
-   
-   
+   ```
 
+2. Open your web browser and navigate to `http://localhost:5173` to access the application's client.
+   To access the api navigate to `http://localhost:3001`
 
+3. Use the map interface to explore different locations, add markers, and remove markers as needed.
 
+4. Click the "Download JSON" button to download marker data as a JSON file.
 
+## Technologies Used
 
+- React.js
+- Leaflet.js
+- react-leaflet
+- MaterialUI (for UI components)
+- Ant Design (for UI components)
+- Node.js
+- Express.js
+- npm (Node Package Manager)
+- Git (for version control)
+
+## Contributing
+
+Contributions are welcome! If you find any bugs or have suggestions for improvements, please open an issue or submit a pull request.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
