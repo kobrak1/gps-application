@@ -35,4 +35,14 @@ markersRouter.post('/', async (request, response, next) => {
     }
 })
 
+// remove a marker
+markersRouter.delete('/:id', async (request, response, next) => {
+    try {
+        await Marker.findByIdAndDelete(request.params.id)
+        response.status(204).end()
+    } catch (exception) {
+        next(exception)
+    }
+})
+
 module.exports = markersRouter
