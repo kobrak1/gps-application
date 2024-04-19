@@ -29,8 +29,8 @@ Location Mapper is a web application developed using React and Leaflet to visual
 4. Create a .env file in the server directory and add the following environment variables:
 
     ```bash
-    PORT=5000
     MONGO_URI=your_mongodb_uri
+    PORT=3001
 
 ## Usage
 
@@ -55,6 +55,7 @@ Location Mapper is a web application developed using React and Leaflet to visual
 - Ant Design (for UI components)
 - Node.js
 - Express.js
+- MongoDB
 - npm (Node Package Manager)
 - Git (for version control)
 
