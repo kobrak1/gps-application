@@ -15,6 +15,7 @@ mongoose
   .catch(error => console.log('error connecting to mongodb:', error.message))
 
 app.use(cors())  // middleware to assure same origin policy
+app.use(express.static('dist'))  // middleware to serve static files on the backend
 app.use(express.json())  // middleware to parse JSON bodies
 app.use(middleware.requestLogger)
 
