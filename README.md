@@ -12,6 +12,7 @@ Location Mapper is a web application developed using React and Leaflet to visual
 ## Installation
 
 1. Clone the repository:
+   ```bash
    git clone https://github.com/yourusername/location-mapper.git
 
 
