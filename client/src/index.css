@@ -2,3 +2,51 @@
 .leaflet-container {
     height: 100vh;
 }
+
+.marker {
+    display: flex;
+    justify-content: space-around;
+}
+
+.markers-container {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(191, 190, 190, .7);
+    margin-left: 1rem;
+    border-radius: .3rem;
+}
+
+.markers-container h2 {
+    text-align: center;
+    font-family: sans-serif;
+}
+
+.markers-list {
+    display: flex;
+    flex-direction: column;
+    max-height: 300px;
+    margin: 0 1rem;
+    overflow-y: auto;
+}
+
+.markers-list ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.markers-list ul li {
+    display: flex;
+    margin-bottom: 1rem;
+    background-color: rgb(237, 236, 236, .8);
+    width: 16rem;
+    height: 2rem;
+    padding: 1rem;
+    cursor: pointer;
+    border-radius: .5rem;
+    transition: .2s ease;
+}
+
+.markers-list ul li:hover {
+    background-color: rgb(245, 242, 242);
+}
