@@ -1,11 +1,11 @@
 const mongoose = require('mongoose')
 
 const markerSchema = new mongoose.Schema({
-    latitude: {
+    lat: {
         type: Number,
         required: true
     },
-    longitude: {
+    lng: {
         type: Number,
         required: true
     },
@@ -15,7 +15,7 @@ const markerSchema = new mongoose.Schema({
     }
 })
 
-noteSchema.set('toJSON', {
+markerSchema.set('toJSON', {
     transform: (document, returnedObject) => {
       returnedObject.id = returnedObject._id.toString()
       delete returnedObject._id
