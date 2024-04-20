@@ -1,14 +1,14 @@
 import { useContext, useEffect, useState } from 'react';
-import { Button } from '@mui/material'
-import { message } from 'antd'
-import L from 'leaflet'
-import { MapContainer, Marker, TileLayer, useMapEvents } from 'react-leaflet'
-import 'leaflet/dist/leaflet.css'
 import markerService from './services/services'
 import MarkerList from './components/MarkerList';
+import L from 'leaflet'
+import { MapContainer, Marker, TileLayer, useMapEvents } from 'react-leaflet'
+import { Button } from '@mui/material'
+import { message } from 'antd'
 import { MainContext } from './context/MainProvider';
+import 'leaflet/dist/leaflet.css'
 
-// icon not found problem by adding marker icon manually
+// icon not found problem solved by adding marker icon manually
 import icon from 'leaflet/dist/images/marker-icon.png'
 import iconShadow from 'leaflet/dist/images/marker-shadow.png'
 
