@@ -11,6 +11,7 @@ import { MainContext } from './context/MainProvider';
 // icon not found problem by adding marker icon manually
 import icon from 'leaflet/dist/images/marker-icon.png'
 import iconShadow from 'leaflet/dist/images/marker-shadow.png'
+import Header from './components/Header/Header';
 
 let DefaultIcon = L.icon({
   iconUrl: icon,
@@ -21,7 +22,7 @@ L.Marker.prototype.options.icon = DefaultIcon
 
 const App = () => {
   const [markers, setMarkers] = useState([])
-  const { center, setCenter, downloadJSON } = useContext(MainContext)
+  const { center, setCenter, downloadJSON, darkMode } = useContext(MainContext)
 
   useEffect(() => {
     markerService
@@ -83,8 +84,12 @@ const App = () => {
     }
   }
 
+  // handle dark mode with DOM manipulation
+  document.body.style.backgroundColor = darkMode ? '#333333' : '#ffffff'
+
   return (
     <div>
+      <Header />
       <div className="marker">
         <MapContainer center={center} zoom={13} style={{ height: '400px', width: '85%' }}>
           <TileLayer url='https://tile.openstreetmap.org/{z}/{x}/{y}.png' />
@@ -98,20 +103,22 @@ const App = () => {
           setCenter={setCenter}
         />
       </div>
-      <Button 
-        variant='contained'
-        onClick={handleSave}
-        style={{margin: '1rem 0'}}
-      >
-        Save Marker
-      </Button>
-      <Button
-        variant='outlined'
-        onClick={() => downloadJSON(markers)}
-        style={{margin: '1rem'}}
-      >
-        Donwload JSON
-      </Button>
+      <div className="button-container">
+        <Button 
+          variant='contained'
+          onClick={handleSave}
+          style={{margin: '1rem 0'}}
+        >
+          Save Marker
+        </Button>
+        <Button
+          variant='outlined'
+          onClick={() => downloadJSON(markers)}
+          style={{margin: '1rem'}}
+        >
+          Donwload JSON
+        </Button>
+      </div>
     </div>
   );
 };
