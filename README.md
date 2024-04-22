@@ -1,7 +1,6 @@
 # Location Mapper
 
-![location-mapper](https://github.com/kobrak1/gps-application/assets/114083611/1c26b5d4-f0de-4f52-90a6-65d7bd336fa3)
-
+![location-mapper-ss](https://github.com/kobrak1/gps-application/assets/114083611/5849c3fe-f99a-4e66-8e01-927a60a0acbe)
 
 Location Mapper is a web application developed using React and Leaflet to visualize and mark locations on a map based on latitude and longitude coordinates.
 You can access the deployed web application here: [https://location-mapper.onrender.com/](https://location-mapper.onrender.com/)
