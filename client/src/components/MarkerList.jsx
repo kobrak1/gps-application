@@ -1,11 +1,10 @@
 import PropTypes from 'prop-types'
 import { Button } from '@mui/material'
+import { useContext } from 'react'
+import { MainContext } from '../context/MainProvider'
 
-const MarkerList = ({ markers, removeMarker, setCenter }) => {
-    // sets the location to the setCenter
-    const handleItemClick = (item) => {
-        setCenter({ lat: item.lat, lng: item.lng })
-    }
+const MarkerList = ({ markers, removeMarker }) => {
+    const { handleItemClick } = useContext(MainContext)
 
     return (
         <div className="markers-container">

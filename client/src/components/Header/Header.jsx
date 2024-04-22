@@ -1,9 +1,25 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { MainContext } from "../../context/MainProvider";
 import "./Header.css";
 
 const Header = () => {
-  const { darkMode, handleDarkMode } = useContext(MainContext);
+  const { 
+    darkMode, 
+    handleDarkMode,
+    setCenter
+  } = useContext(MainContext);
+  const [searchItem, setSearchItem] = useState({lat: '', lng: ''})
+
+  // handle search item
+  const handleSearch = () => {
+    const [lat,lng] = searchItem.split(',')
+    const coordinatesObject = {
+      lat: parseFloat(lat),
+      lng: parseFloat(lng)
+    }
+    setCenter(coordinatesObject)
+  }
+
   return (
     <header>
       <div className="header-wrapper">
@@ -19,8 +35,14 @@ const Header = () => {
           </h2>
         </div>
         <div className="search-container">
-          <input type="text" className="search-input" placeholder="Search..." />
-          <button className="search-button">Search</button>
+          <input 
+            className="search-input"
+            type="text"
+            value={searchItem}
+            onChange={e => setSearchItem(e.target.value)}
+            placeholder="Search..." 
+          />
+          <button className="search-button" onClick={() => handleSearch(searchItem)}>Search</button>
         </div>
         <div className={`dark-mode ${!darkMode === false && "dark"}`}>
           <span

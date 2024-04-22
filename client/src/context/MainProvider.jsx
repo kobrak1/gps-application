@@ -20,12 +20,18 @@ const MainProvider = ({children}) => {
         setDarkMode(!darkMode)
     }
 
+    // sets the location to the setCenter
+    const handleItemClick = (item) => {
+        setCenter({ lat: item.lat, lng: item.lng })
+    }
+
     const propValues = { 
         center,
         setCenter,
         downloadJSON,
         darkMode,
-        handleDarkMode
+        handleDarkMode,
+        handleItemClick
      }
 
     return (
