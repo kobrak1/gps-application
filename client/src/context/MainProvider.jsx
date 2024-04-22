@@ -5,18 +5,27 @@ import PropTypes from 'prop-types'
 export const MainContext = createContext()
 
 const MainProvider = ({children}) => {
-    const [center, setCenter] = useState({ lat: 41.015137, lng: 28.979530 })
+    const [center, setCenter] = useState({ lat: 41.015137, lng: 28.979530 })  // handle lat lng state
+    const [darkMode, setDarkMode] = useState(false)  // handle dark mode state
 
+    // handle JSON download function
     const downloadJSON = (markers) => {
         const jsonMarkers = JSON.stringify(markers)
         const blob = new Blob([jsonMarkers], { type: 'application/json' })
         saveAs(blob, 'markers.json')
     }
 
+    // handle transitioning between dark mode and light mode
+    const handleDarkMode = () => {
+        setDarkMode(!darkMode)
+    }
+
     const propValues = { 
         center,
         setCenter,
-        downloadJSON
+        downloadJSON,
+        darkMode,
+        handleDarkMode
      }
 
     return (
