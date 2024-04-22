@@ -1,3 +1,35 @@
+:root {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto", sans-serif;
+    color: #5b5b5b;
+  }
+  
+  li {
+    list-style-type: none;
+    text-decoration: none;
+  }
+  
+  ul {
+    list-style-type: none;
+    text-decoration: none;
+  }
+  
+  a {
+    list-style-type: none;
+    text-decoration: none;
+  }
+  
+  body {
+    transition: background-color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
 /* sizing of map container */
 .leaflet-container {
     height: 100vh;
@@ -6,6 +38,7 @@
 .marker {
     display: flex;
     justify-content: space-around;
+    margin: 0 2rem;
 }
 
 .markers-container {
@@ -14,6 +47,7 @@
     background-color: rgb(191, 190, 190, .7);
     margin-left: 1rem;
     border-radius: .3rem;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5)
 }
 
 .markers-container h2 {
@@ -25,7 +59,7 @@
     display: flex;
     flex-direction: column;
     max-height: 300px;
-    min-width: 18rem;
+    min-width: 20rem;
     margin: 0 1rem;
     overflow-y: auto;
 }
@@ -40,7 +74,7 @@
     display: flex;
     margin-bottom: 1rem;
     background-color: rgb(237, 236, 236, .8);
-    width: 16rem;
+    width: 17rem;
     height: 2rem;
     padding: 1rem;
     cursor: pointer;
@@ -50,4 +84,8 @@
 
 .markers-list ul li:hover {
     background-color: rgb(245, 242, 242);
+}
+
+.button-container {
+    margin: 0 2rem;
 }

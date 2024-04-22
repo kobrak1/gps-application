@@ -1,0 +1,67 @@
+.header-wrapper {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #1976d2;
+    margin: 0 0 3rem 0;
+    box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.5)
+}
+
+.header-wrapper .logo-container h2 a {
+    color: aliceblue;
+}
+
+/* searchbar container styling starts here */
+.search-container {
+    display: flex;
+    justify-content: center;
+  }
+  .search-input {
+    padding: 10px;
+    width: 250px;
+    border: 1px solid #b6b6b6;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-right: .5rem;
+  }
+  .search-button {
+    padding: 10px 15px;
+    background-color: #084586;
+    color: #fff;
+    border: 1px solid #c5c3c3;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  .search-button:hover {
+    transition: .2s ease;
+    background-color: rgb(8, 69, 134, .8);
+    color: #fff;
+    border: 1px solid #fff;
+  }
+
+/* dark mode button styling start here */
+header .dark-mode {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    background-color: #fff;
+  }
+  header .dark-mode.dark {
+    background-color: #333333;
+    box-shadow: none;
+  }
+  
+  .material-symbols-outlined {
+    color: #f1f1f1;
+    transition: 0.5s ease;
+  }
+  
+  .material-symbols-outlined.dark {
+    color: #5b5b5b;
+  }
