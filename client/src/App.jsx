@@ -1,11 +1,12 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useMain } from './context/MainProvider';
+import { useTheme } from './context/ThemeProvider';
 import markerService from './services/services'
 import MarkerList from './components/MarkerList';
 import L from 'leaflet'
 import { MapContainer, Marker, TileLayer, useMapEvents } from 'react-leaflet'
 import { Button } from '@mui/material'
 import { message } from 'antd'
-import { MainContext } from './context/MainProvider';
 import 'leaflet/dist/leaflet.css'
 
 // icon not found problem solved by adding marker icon manually
@@ -22,7 +23,8 @@ L.Marker.prototype.options.icon = DefaultIcon
 
 const App = () => {
   const [markers, setMarkers] = useState([])
-  const { center, setCenter, downloadJSON, darkMode } = useContext(MainContext)
+  const { center, setCenter, downloadJSON } = useMain()
+  const { theme } = useTheme()
 
   useEffect(() => {
     markerService
@@ -85,7 +87,7 @@ const App = () => {
   }
 
   // handle dark mode with DOM manipulation
-  document.body.style.backgroundColor = darkMode ? '#333333' : '#ffffff'
+  document.body.style.backgroundColor = theme ? '#333333' : '#ffffff'
 
   return (
     <div>
