@@ -1,12 +1,11 @@
-import { createContext, useState } from "react"
+import { createContext, useContext, useState } from "react"
 import { saveAs } from 'file-saver'
 import PropTypes from 'prop-types'
 
 export const MainContext = createContext()
 
-const MainProvider = ({children}) => {
+export const MainProvider = ({children}) => {
     const [center, setCenter] = useState({ lat: 41.015137, lng: 28.979530 })  // handle lat lng state
-    const [darkMode, setDarkMode] = useState(false)  // handle dark mode state
 
     // handle JSON download function
     const downloadJSON = (markers) => {
@@ -15,36 +14,36 @@ const MainProvider = ({children}) => {
         saveAs(blob, 'markers.json')
     }
 
-    // handle transitioning between dark mode and light mode
-    const handleDarkMode = () => {
-        setDarkMode(!darkMode)
-    }
-
     // sets the location to the setCenter
     const handleItemClick = (item) => {
         setCenter({ lat: item.lat, lng: item.lng })
     }
 
-    const propValues = { 
+    const values = { 
         center,
         setCenter,
         downloadJSON,
-        darkMode,
-        handleDarkMode,
-        handleItemClick
+        handleItemClick 
      }
 
     return (
-        <MainContext.Provider
-            value={propValues}
-        >
+        <MainContext.Provider value={values}>
             {children}
         </MainContext.Provider>
     )
 }
 
-MainProvider.propTypes = {
-    children: PropTypes.node.isRequired
+// eslint-disable-next-line react-refresh/only-export-components
+export const useMain = () => {
+    const context = useContext(MainContext)
+
+    // check if the context used inside the MainProvider
+    if (!context) {
+        throw new Error('This useMain hook must be called inside the MainProvider')
+    }
+    return context
 }
 
-export default MainProvider
+MainProvider.propTypes = {
+    children: PropTypes.node
+}
